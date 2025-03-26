@@ -21,6 +21,9 @@ public class GridMovement : MonoBehaviour
     public Vector3 sitDownCameraOffset = new Vector3(0, 1f, 0.5f);
     public Vector3 sitDownCameraRotation = new Vector3(10, 0, 0);
 
+    public Vector3 DiskCameraOffset = new Vector3(0, 1f, 0.5f);
+    public Vector3 DiskCameraRotation = new Vector3(10, 0, 0);
+
     private Vector3 defaultCameraPosition;
     private Quaternion defaultCameraRotation;
 
@@ -88,6 +91,12 @@ public class GridMovement : MonoBehaviour
             return;
         }
 
+        if (currentTilePosition == new Vector2Int(0, 2) && transform.forward == Vector3.forward)
+        {
+            DiskPuzzleSitDown();
+            return;
+        }
+
         if (IsInsideGrid(nextPos))
         {
             targetPosition = nextPos;
@@ -149,6 +158,13 @@ public class GridMovement : MonoBehaviour
         onGrid = false;
 
         StartCoroutine(MoveCamera(sitDownCameraOffset, Quaternion.Euler(sitDownCameraRotation)));
+    }
+
+    void DiskPuzzleSitDown()
+    {
+        Debug.Log("disk puzzle");
+        onGrid = false;
+        StartCoroutine(MoveCamera(DiskCameraOffset, Quaternion.Euler(DiskCameraRotation)));
     }
 
     void StandUp()
