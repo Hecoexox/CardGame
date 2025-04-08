@@ -27,10 +27,6 @@ public class GridMovement : MonoBehaviour
     private Vector3 defaultCameraPosition;
     private Quaternion defaultCameraRotation;
 
-    [Header("Audio Settings")]
-    public AudioSource audioSource;  // AudioSource component
-    public AudioClip[] moveSounds;   // Array to hold different move sounds
-
     void Start()
     {
         targetPosition = transform.position;
@@ -65,7 +61,11 @@ public class GridMovement : MonoBehaviour
                 {
                     MoveForward();
                 }
-                
+
+                if (Input.GetKeyDown(KeyCode.S))
+                {                   
+                    MoveBackwards();
+                }
 
                 if (Input.GetKeyDown(KeyCode.A))
                 {
@@ -103,12 +103,19 @@ public class GridMovement : MonoBehaviour
 
         if (IsInsideGrid(nextPos))
         {
-            targetPosition = nextPos;
-            PlayRandomMoveSound();  // Call function to play random move sound
+            targetPosition = nextPos;        
         }
     }
+    public void MoveBackwards()
+    {
+        Vector3 nextPos = targetPosition - transform.forward * tileSize;
+        Vector2Int nextTilePos = GetTilePosition(nextPos);
 
-    
+        if (IsInsideGrid(nextPos))
+        {
+            targetPosition = nextPos;          
+        }
+    }
 
     void RotateLeft()
     {
@@ -196,15 +203,5 @@ public class GridMovement : MonoBehaviour
 
         cameraTransform.localPosition = targetPos;
         cameraTransform.localRotation = targetRot;
-    }
-
-    // Method to play a random move sound from the array
-    void PlayRandomMoveSound()
-    {
-        if (moveSounds.Length > 0)
-        {
-            int randomIndex = Random.Range(0, moveSounds.Length);
-            audioSource.PlayOneShot(moveSounds[randomIndex]);
-        }
     }
 }
