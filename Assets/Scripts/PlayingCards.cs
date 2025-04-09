@@ -6,6 +6,10 @@ public class PlayingCards : MonoBehaviour
 {
     public GameObject selectedCard = null;
     public Transform[] slots;  // Slotlar (masadaki 5 slot)
+    private string[] microTags = { "Micro_Predator", "Micro_Herbivore", };
+    private string[] mesoTags = { "Meso_Predator", };
+    private string[] alphaTags = { "Alpha_Predator", };
+    private string[] apexTags = { "Apex_Predator", };
 
     void Update()
     {
@@ -18,7 +22,7 @@ public class PlayingCards : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 // Eðer týklanan þey bir kart ise, kartý seç
-                if (hit.collider.CompareTag("Card"))
+                if (hit.collider.CompareTag(microTags[0]) || hit.collider.CompareTag(microTags[1]))
                 {
                     selectedCard = hit.collider.gameObject;
                     Debug.Log("Kart seçildi: " + selectedCard.name);
@@ -26,7 +30,6 @@ public class PlayingCards : MonoBehaviour
                 }
             }
         }
-
         // Eðer seçili kart varsa ve fare týklanýrsa, kartý slotlara yerleþtir
         if (selectedCard != null && Input.GetMouseButtonDown(1))  // Sað fare tuþuna týklama
         {
@@ -39,13 +42,6 @@ public class PlayingCards : MonoBehaviour
                 if (hit.collider.CompareTag("Slot"))
                 {
                     Transform slot = hit.collider.transform;
-
-                    // Slotta zaten bir kart var mý kontrol et
-                    if (slot.childCount > 0)  // Eðer slotta bir child varsa, yani kart varsa
-                    {
-                        Debug.Log("Bu slota zaten kart yerleþtirilmiþ.");
-                        return;  // Yeni kart yerleþtirilemez
-                    }
 
                     // Kartý smooth bir þekilde slotta yerine yerleþtir
                     StartCoroutine(MoveCardToSlot(selectedCard, slot.position, slot));

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardCollection : MonoBehaviour
@@ -72,21 +73,34 @@ public class CardCollection : MonoBehaviour
 
     private IEnumerator SpawnHandCoroutine()
     {
-        // Kartlarý tek tek spawn et
         for (int i = 0; i < playerHand.Count && i < handPositions.Length; i++)
         {
-            // Kartý spawn position'da oluþtur
+            CardData cardData = playerHand[i];
+
             GameObject cardGO = Instantiate(cardPrefab, spawnPosition, Quaternion.identity);
 
-            // Kartý hedef pozisyona hareket ettir
+            // Spawn edilen objeye cardName ver
+            cardGO.name = cardData.cardName;
+
+            // Tag olarak CardLevel enum’undaki string deðer atanýyor
+            string levelTag = cardData.level.ToString();
+            if (IsValidTag(levelTag))
+            {
+                cardGO.tag = levelTag;
+            }
+            else
+            {
+                Debug.LogWarning($"'{levelTag}' tag olarak tanýmlý deðil. Unity editörden Tags kýsmýna eklemelisin.");
+            }
+
+            // Kartý hedef pozisyona taþý
             StartCoroutine(MoveCardToPosition(cardGO, handPositions[i]));
 
             // Görsel setup
             CardDisplay display = cardGO.GetComponent<CardDisplay>();
-            display.Setup(playerHand[i].artwork);
+            display.Setup(cardData.artwork);
 
-            // Biraz bekle, sonra sýradakine geç
-            yield return new WaitForSeconds(0.1f); // Ýstersen ayarlanabilir yaparýz
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -112,5 +126,15 @@ public class CardCollection : MonoBehaviour
         card.transform.SetParent(target);
         card.transform.position = target.position;
         card.transform.rotation = target.rotation;
+    }
+
+    private bool IsValidTag(string tag)
+    {
+        // Unity sadece editörde çalýþtýrabilir bu kýsmý
+#if UNITY_EDITOR
+    return UnityEditorInternal.InternalEditorUtility.tags.Contains(tag);
+#else
+        return true; // Build ortamýnda tag kontrolü yapýlamaz, o yüzden true döneriz
+#endif
     }
 }
