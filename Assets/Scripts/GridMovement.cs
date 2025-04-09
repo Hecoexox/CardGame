@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GridMovement : MonoBehaviour
@@ -9,6 +10,8 @@ public class GridMovement : MonoBehaviour
     public Vector2Int gridSize = new Vector2Int(4, 3);
 
     public bool onGrid = true;
+    public bool canStandUp = false; // Yeni bool deðiþkeni
+    public SittingCamera sittingCamera;
 
     private Vector3 targetPosition;
     private Quaternion targetRotation;
@@ -20,9 +23,6 @@ public class GridMovement : MonoBehaviour
     public Transform cameraTransform;
     public Vector3 sitDownCameraOffset = new Vector3(0, 1f, 0.5f);
     public Vector3 sitDownCameraRotation = new Vector3(10, 0, 0);
-
-    //public Vector3 DiskCameraOffset = new Vector3(0, 1f, 0.5f);
-    //public Vector3 DiskCameraRotation = new Vector3(10, 0, 0);
 
     private Vector3 defaultCameraPosition;
     private Quaternion defaultCameraRotation;
@@ -49,6 +49,21 @@ public class GridMovement : MonoBehaviour
         SmoothMove();
         SmoothRotate();
         currentTilePosition = GetTilePosition(transform.position);
+
+        if (canStandUp)
+        {
+            if (sittingCamera != null)
+            {
+                sittingCamera.enabled = false; // SittingCamera scriptini devre dýþý býrak
+            }
+        }
+        else
+        {
+            if (sittingCamera != null && !sittingCamera.enabled)
+            {
+                sittingCamera.enabled = true; // Eðer canStandUp false ise, SittingCamera scriptini tekrar aktif et
+            }
+        }
     }
 
     void HandleInput()
@@ -63,7 +78,7 @@ public class GridMovement : MonoBehaviour
                 }
 
                 if (Input.GetKeyDown(KeyCode.S))
-                {                   
+                {
                     MoveBackwards();
                 }
 
@@ -78,7 +93,7 @@ public class GridMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && !onGrid)
+        if (Input.GetKeyDown(KeyCode.S) && !onGrid && canStandUp) // canStandUp kontrolü eklendi
         {
             StandUp();
         }
@@ -95,17 +110,12 @@ public class GridMovement : MonoBehaviour
             return;
         }
 
-        //if (currentTilePosition == new Vector2Int(0, 2) && transform.forward == Vector3.forward)
-        //{
-        //    DiskPuzzleSitDown();
-        //    return;
-        //}
-
         if (IsInsideGrid(nextPos))
         {
-            targetPosition = nextPos;        
+            targetPosition = nextPos;
         }
     }
+
     public void MoveBackwards()
     {
         Vector3 nextPos = targetPosition - transform.forward * tileSize;
@@ -113,7 +123,7 @@ public class GridMovement : MonoBehaviour
 
         if (IsInsideGrid(nextPos))
         {
-            targetPosition = nextPos;          
+            targetPosition = nextPos;
         }
     }
 
@@ -167,21 +177,16 @@ public class GridMovement : MonoBehaviour
     {
         Debug.Log("Oturuyor...");
         onGrid = false;
+        canStandUp = true; // Oturduðunda kalkma izni veriyoruz
 
         StartCoroutine(MoveCamera(sitDownCameraOffset, Quaternion.Euler(sitDownCameraRotation)));
     }
-
-    //void DiskPuzzleSitDown()
-    //{
-    //    Debug.Log("disk puzzle");
-    //    onGrid = false;
-    //    StartCoroutine(MoveCamera(DiskCameraOffset, Quaternion.Euler(DiskCameraRotation)));
-    //}
 
     void StandUp()
     {
         Debug.Log("Kalkýyor...");
         onGrid = true;
+        //canStandUp = false; // Kalktýktan sonra tekrar masaya oturana kadar kalkmak mümkün olmasýn
 
         StartCoroutine(MoveCamera(defaultCameraPosition, defaultCameraRotation));
     }

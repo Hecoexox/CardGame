@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        // Deck'e yalnýzca bir kez týklanabilsin
+        if (Input.GetMouseButtonDown(0) && !gameStarted)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
                 if (hit.collider.CompareTag("Deck"))
                 {
                     cardCollection.ShowHand();
-                    gameStarted = true;
+                    gameStarted = true; // Deck týklandýðýnda bir daha týklanamayacak
                 }
             }
         }
