@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 8Wolf Spider
   m_EditorClassIdentifier: 
   id: 8
-  cardName: 
+  cardName: Wolf Spider
   artwork: {fileID: 21300000, guid: db874c743d2f59d4990dc1c3c4bb8895, type: 3}
   isUnlocked: 1
   attack: 0

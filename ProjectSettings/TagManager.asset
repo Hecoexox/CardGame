@@ -7,6 +7,13 @@ TagManager:
   - Deck
   - Card
   - Slot
+  - Apex_Predator
+  - Alpha_Predator
+  - Meso_Predator
+  - Micro_Predator
+  - Mega_Herbivore
+  - Meso_Herbivore
+  - Micro_Herbivore
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 20Greater Capybara
   m_EditorClassIdentifier: 
   id: 20
-  cardName: 
+  cardName: Greater Capybara
   artwork: {fileID: 21300000, guid: a6288c25f1377a148b1fd96bbe783352, type: 3}
   isUnlocked: 1
   attack: 0

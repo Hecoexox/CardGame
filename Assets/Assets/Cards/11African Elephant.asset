@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 11African Elephant
   m_EditorClassIdentifier: 
   id: 11
-  cardName: 
+  cardName: African Elephant
   artwork: {fileID: 21300000, guid: a5040e728c3224c40ad52b01f2ffcce1, type: 3}
   isUnlocked: 1
   attack: 0

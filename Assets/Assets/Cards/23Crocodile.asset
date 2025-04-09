@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82428b6c3e9f0744a657ee20cfb3b0e, type: 3}
   m_Name: 23Crocodile
   m_EditorClassIdentifier: 
-  id: 0
+  id: 23
   cardName: crocodile
   artwork: {fileID: 0}
   isUnlocked: 0

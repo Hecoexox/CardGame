@@ -163,6 +163,11 @@ public class GridMovement : MonoBehaviour
             return false;
         }
 
+        if (newX == 1 && newY == 0)
+        {
+            return false;
+        }
+
         return (newX >= 0 && newX < gridSize.x) && (newY >= 0 && newY < gridSize.y);
     }
 

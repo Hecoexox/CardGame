@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1Grizzly Bear
   m_EditorClassIdentifier: 
   id: 1
-  cardName: 
+  cardName: Grizzly Bear
   artwork: {fileID: 21300000, guid: 21ac0fa9a308c1442acedb26e039e05c, type: 3}
   isUnlocked: 1
   attack: 0

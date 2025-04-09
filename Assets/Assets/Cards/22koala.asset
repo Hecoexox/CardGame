@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 22koala
   m_EditorClassIdentifier: 
   id: 22
-  cardName: 
+  cardName: Koala
   artwork: {fileID: 0}
   isUnlocked: 0
   attack: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 6Alpine Dingo
   m_EditorClassIdentifier: 
   id: 6
-  cardName: 
+  cardName: Alpine Dingo
   artwork: {fileID: 21300000, guid: 8c33803ba6d58174fba357de5d72ac8b, type: 3}
   isUnlocked: 1
   attack: 0

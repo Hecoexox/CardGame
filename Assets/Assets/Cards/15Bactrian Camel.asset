@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 15Bactrian Camel
   m_EditorClassIdentifier: 
   id: 15
-  cardName: 
+  cardName: Bactrian Camel
   artwork: {fileID: 21300000, guid: c7bdc3e9d863482409b2c8ac3c2fc409, type: 3}
   isUnlocked: 1
   attack: 0

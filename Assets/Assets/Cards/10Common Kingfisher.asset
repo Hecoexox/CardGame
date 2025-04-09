@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 10Common Kingfisher
   m_EditorClassIdentifier: 
   id: 10
-  cardName: 
+  cardName: Common Kingfisher
   artwork: {fileID: 21300000, guid: bced57757c80aa24e9eac0d8ab0fb981, type: 3}
   isUnlocked: 1
   attack: 0

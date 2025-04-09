@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 9Black Gecko
   m_EditorClassIdentifier: 
   id: 9
-  cardName: 
+  cardName: Black Gecko
   artwork: {fileID: 21300000, guid: 529c2d83de3adef4f8ec0a7eb5973abf, type: 3}
   isUnlocked: 1
   attack: 0

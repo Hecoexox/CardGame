@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 18Rock Squirrel
   m_EditorClassIdentifier: 
   id: 18
-  cardName: 
+  cardName: Rock Squirrel
   artwork: {fileID: 21300000, guid: 927e30d28ba936447a2294059d701d0f, type: 3}
   isUnlocked: 1
   attack: 0

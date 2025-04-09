@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 16Giant Panda
   m_EditorClassIdentifier: 
   id: 16
-  cardName: 
+  cardName: Giant Panda
   artwork: {fileID: 21300000, guid: 5bba94bcdc8b5b34fb17586272b725a2, type: 3}
   isUnlocked: 1
   attack: 0

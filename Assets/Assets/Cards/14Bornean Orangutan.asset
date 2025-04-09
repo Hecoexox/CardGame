@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 14Bornean Orangutan
   m_EditorClassIdentifier: 
   id: 14
-  cardName: 
+  cardName: Bornean Orangutan
   artwork: {fileID: 21300000, guid: ab357b3b08438ce43ac87f451de61d52, type: 3}
   isUnlocked: 1
   attack: 0

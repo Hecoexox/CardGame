@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 19Dwarf Goat
   m_EditorClassIdentifier: 
   id: 19
-  cardName: 
+  cardName: Dwarf Goat
   artwork: {fileID: 21300000, guid: 37ebd8a521e24684b93aa53c81347b24, type: 3}
   isUnlocked: 1
   attack: 0
